@@ -1,0 +1,35 @@
+{
+    "name": "arbolado-urbano/arbolado-wp-plugin",
+    "version": "1.0.0",
+    "require-dev": {
+        "wp-cli/wp-cli-bundle": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ArboladoUrbano\\ArboladoWpPlugin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fermín Ares",
+            "email": "fermin@ares.uy"
+        }
+    ],
+    "require": {},
+    "config": {
+        "process-timeout":0
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "docker compose up -d",
+            "wp core download --path=wordpress --version=6.7.1",
+            "wp config create --path=wordpress --dbname=arbolado-wp --dbuser=arbolado-wp --dbpass=123456 --dbhost=127.0.0.1",
+            "wp core install --path=wordpress --url=localhost:2000 --title=\"Arbolado Urbano\" --admin_user=admin --admin_email=admin@arboladourbano.com --admin_password=123456",
+            "wp plugin activate --path=wordpress arbolado-urbano"
+        ],
+        "start": [
+            "docker compose up -d",
+            "php -S localhost:2000 -t ./wordpress"
+        ]
+    }
+}

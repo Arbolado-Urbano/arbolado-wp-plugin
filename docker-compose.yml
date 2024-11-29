@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    expose:
+      - '3306'
+    environment:
+      MYSQL_DATABASE: arbolado-wp
+      MYSQL_PASSWORD: 123456
+      MYSQL_USER: arbolado-wp
+      MYSQL_ALLOW_EMPTY_PASSWORD: TRUE
+    volumes:
+      - mysql_volume:/var/lib/mysql
+volumes:
+  mysql_volume:
