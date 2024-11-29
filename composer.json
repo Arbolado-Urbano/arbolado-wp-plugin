@@ -33,6 +33,13 @@
         "start": [
             "docker compose up -d",
             "php -S localhost:2000 -t ./wordpress"
+        ],
+        "stop": [
+            "docker compose down"
+        ],
+        "build": [
+            "rm -f ./dist/arbolado-urbano.zip",
+            "zip -rj ./dist/arbolado-urbano.zip ./wordpress/wp-content/plugins/arbolado-urbano"
         ]
     }
 }

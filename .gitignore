@@ -5,3 +5,5 @@
 !/wordpress/wp-content/plugins
 /wordpress/wp-content/plugins/*
 !/wordpress/wp-content/plugins/arbolado-urbano/
+/dist/*
+!/dist/.keep
