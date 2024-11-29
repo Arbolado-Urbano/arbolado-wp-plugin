@@ -2,7 +2,8 @@
     "name": "arbolado-urbano/arbolado-wp-plugin",
     "version": "1.0.0",
     "require-dev": {
-        "wp-cli/wp-cli-bundle": "*"
+        "wp-cli/wp-cli-bundle": "*",
+        "wp-coding-standards/wpcs": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -15,9 +16,11 @@
             "email": "fermin@ares.uy"
         }
     ],
-    "require": {},
     "config": {
-        "process-timeout":0
+        "process-timeout":0,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "scripts": {
         "post-install-cmd": [
