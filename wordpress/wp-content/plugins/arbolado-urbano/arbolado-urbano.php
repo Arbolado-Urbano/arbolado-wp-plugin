@@ -135,8 +135,12 @@ function arbolado_colaboraciones_sc() {
 		if ( $obj->instagram ) {
 			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->instagram . '">instagram</a> | ';
 		}
-		$result  = rtrim( $result, ' | ' );
-		$result .= '<td><a target="_blank" href="https://arboladourbano.com/fuente/' . $obj->slug . '">Ver árboles</a></td>';
+		$result = rtrim( $result, ' | ' );
+		if ( $obj->cantidad_aportes < 15000 ) {
+			$result .= '<td><a target="_blank" href="https://arboladourbano.com/fuente/' . $obj->slug . '">Ver árboles</a></td>';
+		} else {
+			$result .= '<td></td>';
+		}
 		$result .= '</td>';
 		$result .= '</tr>';
 	}
