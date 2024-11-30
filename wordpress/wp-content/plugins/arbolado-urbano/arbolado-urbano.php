@@ -124,16 +124,16 @@ function arbolado_colaboraciones_sc() {
 		$result .= '<td>' . $obj->cantidad_aportes . '</td>';
 		$result .= '<td>';
 		if ( $obj->url ) {
-			$result .= '<a target="_blank" href="' . $obj->url . '">web</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->url . '">web</a> | ';
 		}
 		if ( $obj->twitter ) {
-			$result .= '<a target="_blank" href="' . $obj->twitter . '">twitter</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->twitter . '">twitter</a> | ';
 		}
 		if ( $obj->facebook ) {
-			$result .= '<a target="_blank" href="' . $obj->facebook . '">facebook</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->facebook . '">facebook</a> | ';
 		}
 		if ( $obj->instagram ) {
-			$result .= '<a target="_blank" href="' . $obj->instagram . '">instagram</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->instagram . '">instagram</a> | ';
 		}
 		$result  = rtrim( $result, ' | ' );
 		$result .= '<td><a target="_blank" href="https://arboladourbano.com/fuente/' . $obj->slug . '">Ver árboles</a></td>';
