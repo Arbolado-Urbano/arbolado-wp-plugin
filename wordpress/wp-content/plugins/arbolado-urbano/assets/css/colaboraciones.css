@@ -34,6 +34,7 @@ td.number {
 .map-link img,
 .links img {
   display: block;
+  max-width: unset;
 }
 
 .links img {

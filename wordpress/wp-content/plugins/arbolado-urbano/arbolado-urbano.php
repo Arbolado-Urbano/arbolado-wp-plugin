@@ -14,7 +14,7 @@
 Plugin Name: Arbolado Urbano
 Plugin URI: https://github.com/Arbolado-Urbano/arbolado-wp-plugin/
 Description: Plugin para Arbolado Urbano.
-Version: 1.0.0
+Version: 1.0.2
 Author: Fermín Ares
 Author URI: https://ares.uy/
 Text Domain: arbolado
@@ -27,7 +27,7 @@ if ( ! function_exists( 'add_shortcode' ) ) {
 
 define( 'ARBOLADO__ASSETS_URL', WP_PLUGIN_URL . '/arbolado-urbano/assets' );
 
-wp_register_style( 'arbolado_colaboraciones', ARBOLADO__ASSETS_URL . '/css/colaboraciones.css', array(), '1' );
+wp_register_style( 'arbolado_colaboraciones', ARBOLADO__ASSETS_URL . '/css/colaboraciones.css', array(), '1.0.2' );
 
 /**
  * Crear menú de configuración del plugin
