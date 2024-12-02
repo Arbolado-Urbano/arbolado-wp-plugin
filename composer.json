@@ -39,7 +39,7 @@
         ],
         "build": [
             "rm -f ./dist/arbolado-urbano.zip",
-            "zip -rj ./dist/arbolado-urbano.zip ./wordpress/wp-content/plugins/arbolado-urbano"
+            "cd ./wordpress/wp-content/plugins && zip -r ../../../dist/arbolado-urbano.zip ./arbolado-urbano"
         ]
     }
 }

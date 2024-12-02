@@ -35,3 +35,13 @@ td.number {
 .links img {
   display: block;
 }
+
+.links img {
+  height: 20px;
+  width: 20px;
+}
+
+.map-link img {
+  height: 25px;
+  width: 25px;
+}

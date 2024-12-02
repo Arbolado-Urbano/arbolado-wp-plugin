@@ -117,8 +117,7 @@ function arbolado_colaboraciones_sc() {
 	if ( ! $rows ) {
 		return '<p><b>[Error: Por favor, revise la confiugración del plugin "Arbolado Urbano"]</b></p>';
 	}
-	$result  = '<';
-	$result .= '<table><thead><tr>';
+	$result  = '<table><thead><tr>';
 	$result .= '<th>Fuente</th>';
 	$result .= '<th>Cantidad de árboles</th>';
 	$result .= '<th>Links</th>';
