@@ -1,0 +1,37 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #fff;
+  text-align:center;
+  position:sticky;
+  top:0;
+}
+
+th, td {
+  padding:.5rem
+}
+
+td.number {
+  text-align: right;
+}
+
+.links {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+}
+
+.map-link {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.map-link img,
+.links img {
+  display: block;
+}

@@ -25,6 +25,10 @@ if ( ! function_exists( 'add_shortcode' ) ) {
 	exit;
 }
 
+define( 'ARBOLADO__ASSETS_URL', WP_PLUGIN_URL . '/arbolado-urbano/assets' );
+
+wp_register_style( 'arbolado_colaboraciones', ARBOLADO__ASSETS_URL . '/css/colaboraciones.css', array(), '1' );
+
 /**
  * Crear menú de configuración del plugin
  */
@@ -100,6 +104,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'arbolado_sett
  * Shortcode para listar a los colaboradores del proyecto.
  */
 function arbolado_colaboraciones_sc() {
+	wp_enqueue_style( 'arbolado_colaboraciones' );
 	$db_user = get_option( 'arbolado_db_user' );
 	$db_pass = get_option( 'arbolado_db_pass' );
 	$db_name = get_option( 'arbolado_db_name' );
@@ -112,7 +117,8 @@ function arbolado_colaboraciones_sc() {
 	if ( ! $rows ) {
 		return '<p><b>[Error: Por favor, revise la confiugración del plugin "Arbolado Urbano"]</b></p>';
 	}
-	$result  = '<table><thead><tr>';
+	$result  = '<';
+	$result .= '<table><thead><tr>';
 	$result .= '<th>Fuente</th>';
 	$result .= '<th>Cantidad de árboles</th>';
 	$result .= '<th>Links</th>';
@@ -121,27 +127,28 @@ function arbolado_colaboraciones_sc() {
 	foreach ( $rows as $obj ) {
 		$result .= '<tr>';
 		$result .= '<td>' . $obj->nombre . '</td>';
-		$result .= '<td>' . $obj->cantidad_aportes . '</td>';
-		$result .= '<td>';
+		$result .= '<td class="number">' . $obj->cantidad_aportes . '</td>';
+		$result .= '<td><span class="links">';
 		if ( $obj->url ) {
-			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->url . '">web</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->url . '"><img width="20" height="20" src="' . ARBOLADO__ASSETS_URL . '/icons/web.svg" alt="Sitio web" /></a>';
 		}
 		if ( $obj->twitter ) {
-			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->twitter . '">twitter</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->twitter . '"><img width="20" height="20" src="' . ARBOLADO__ASSETS_URL . '/icons/x.svg" alt="Twitter/X" /></a>';
 		}
 		if ( $obj->facebook ) {
-			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->facebook . '">facebook</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->facebook . '"><img width="20" height="20" src="' . ARBOLADO__ASSETS_URL . '/icons/facebook.svg" alt="Facebook" /></a>';
 		}
 		if ( $obj->instagram ) {
-			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->instagram . '">instagram</a> | ';
+			$result .= '<a target="_blank" rel="noreferrer noopener nofollow" href="' . $obj->instagram . '"><img width="20" height="20" src="' . ARBOLADO__ASSETS_URL . '/icons/instagram.svg" alt="Instagram" /></a>';
 		}
-		$result = rtrim( $result, ' | ' );
+		$result .= '</span></td>';
 		if ( $obj->cantidad_aportes < 15000 ) {
-			$result .= '<td><a target="_blank" href="https://arboladourbano.com/fuente/' . $obj->slug . '">Ver árboles</a></td>';
+			$result .= '<td><span class="map-link">';
+			$result .= '<a target="_blank" href="https://arboladourbano.com/fuente/' . $obj->slug . '"><img width="25" height="25" src="' . ARBOLADO__ASSETS_URL . '/icons/marker.png" alt="Ver árboles" /></a>';
+			$result .= '<span></td>';
 		} else {
 			$result .= '<td></td>';
 		}
-		$result .= '</td>';
 		$result .= '</tr>';
 	}
 	$result .= '</tbody></table>';
