@@ -27,7 +27,9 @@ if ( ! function_exists( 'add_shortcode' ) ) {
 
 define( 'ARBOLADO__ASSETS_URL', WP_PLUGIN_URL . '/arbolado-urbano/assets' );
 
-wp_register_style( 'arbolado_colaboraciones', ARBOLADO__ASSETS_URL . '/css/colaboraciones.css', array(), '1.0.2' );
+add_action('wp_enqueue_scripts', function() {
+	wp_register_style( 'arbolado_colaboraciones', ARBOLADO__ASSETS_URL . '/css/colaboraciones.css', array(), '1.0.2' );
+});
 
 /**
  * Crear menú de configuración del plugin

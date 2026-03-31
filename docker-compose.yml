@@ -1,16 +1,66 @@
 services:
   db:
     image: mysql:latest
-    ports:
-      - 3306:3306
-    expose:
-      - '3306'
     environment:
       MYSQL_DATABASE: arbolado-wp
       MYSQL_PASSWORD: 123456
       MYSQL_USER: arbolado-wp
       MYSQL_ALLOW_EMPTY_PASSWORD: TRUE
     volumes:
-      - arbolado_wp_plugin_mysql_volume:/var/lib/mysql
+      - mysql_volume:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    depends_on:
+      - db
+    ports:
+      - "2000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: arbolado-wp
+      WORDPRESS_DB_PASSWORD: 123456
+      WORDPRESS_DB_NAME: arbolado-wp
+      WORDPRESS_DEBUG: "1"
+      WP_URL: localhost:2000
+      WP_TITLE: "Arbolado Urbano"
+      WP_ADMIN_USER: admin
+      WP_ADMIN_PASSWORD: 123456
+      WP_ADMIN_EMAIL: admin@arboladourbano.com
+      WP_LOCALE: es_AR
+    volumes:
+      - ./src:/var/www/html/wp-content/plugins/arbolado-urbano
+      - wp_data:/var/www/html
+
+  wpcli:
+    image: wordpress:cli
+    depends_on:
+      wordpress:
+        condition: service_started
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: arbolado-wp
+      WORDPRESS_DB_PASSWORD: 123456
+      WORDPRESS_DB_NAME: arbolado-wp
+    volumes:
+      - ./src:/var/www/html/wp-content/plugins/arbolado-urbano
+      - wp_data:/var/www/html
+    entrypoint: >
+      sh -c "
+      sleep 10 && \
+      wp core install --url='http://localhost:2000' --title='Arbolado Urbano' --admin_user='admin' --admin_password='123456' --admin_email='admin@arboladourbano.com' --allow-root && \
+      wp plugin activate arbolado-urbano
+      "
+
+  builder:
+    image: alpine:latest
+    volumes:
+      - ./src:/src
+      - ./dist:/dist
+    entrypoint: >
+      sh -c "apk add --no-cache zip && zip -r /dist/arbolado-urbano.zip ./src"
+    profiles:
+      - build
+
 volumes:
-  arbolado_wp_plugin_mysql_volume:
+  mysql_volume:
+  wp_data:
