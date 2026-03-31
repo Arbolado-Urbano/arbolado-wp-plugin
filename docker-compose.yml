@@ -11,6 +11,6 @@ services:
       MYSQL_USER: arbolado-wp
       MYSQL_ALLOW_EMPTY_PASSWORD: TRUE
     volumes:
-      - mysql_volume:/var/lib/mysql
+      - arbolado_wp_plugin_mysql_volume:/var/lib/mysql
 volumes:
-  mysql_volume:
+  arbolado_wp_plugin_mysql_volume:

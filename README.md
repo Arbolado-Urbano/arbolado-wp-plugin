@@ -9,11 +9,7 @@
 
 1. Ejectuar el comando `composer install` para instalar las dependencias del proyecto e instalar y configurar Wordpress.
 2. Ejecutar el comando `composer start` para levantar un servidor PHP local en [http://localhost:2000](http://localhost:2000)
-3. Al visitar [http://localhost:2000](http://localhost:2000) por primera vez se nos pedirán las credenciales de la base de datos, estas son:
-    - Nombre: arbolado-wp
-    - Usuario: arbolado-wp
-    - Contraseña: 123456
-    - Host: 127.0.0.1:3306
+3. Para acceder al panel de administración en [http://localhost:2000/wp-admin](http://localhost:2000/wp-admin) el usuario es admin y la contraseña es 123456
 
 El código del plugin se encuentra en `wordpress/wp-content/plugins/arbolado-urbano`
 
